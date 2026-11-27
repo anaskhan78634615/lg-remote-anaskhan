@@ -1,10 +1,2 @@
-# LG TV Remote Android
-Native Android project for LG webOS 32LM636BPTB, using the bundled website UI. No website hosting or Node server is required for Android.
-
-## Build without Android Studio
-Create a GitHub repository and push the contents of this folder, including the hidden .github directory. Open Actions > Build Android APK > Run workflow. Once successful, open the run and download LG-TV-Remote-APK from Artifacts. Extract app-debug.apk and install it on your Android phone. Android may ask permission to install from your file manager. The APK is debug-signed, not a Play Store release.
-
-Connect phone and TV to the same trusted Wi-Fi, enter the TV private IPv4 address and accept pairing on TV. The TV uses self-signed TLS; this prototype does not authenticate its certificate, so use only a trusted network. Wake-on-LAN requires TV support and MAC address. JioHotstar requires an installed compatible TV app and app-list permissions. Physical TV testing and APK compilation have not been performed here.
-
-## Version 1.1
-Uses a matching non-cellular network route when Android exposes one; otherwise uses the default route (including possible hotspot routing). Reports both connection failures and uses a 15-second timeout. Reconnect manually using Connect TV. Secure WebSocket still accepts self-signed TV certificates without identity verification; use only a trusted private network. No automatic discovery or reconnect in this version. Build via Actions; debug signing may differ from previous builds.
+# LG Remote Android
+Open this folder in Android Studio, use JDK 17, install Android SDK 35, sync Gradle, then Build > Generate App Bundles or APKs > Generate APKs. If no wrapper is present, Android Studio can use a local Gradle 8.9 installation (Settings > Build Tools > Gradle). Alternatively run `gradle wrapper --gradle-version 8.9` using an installed Gradle, then `gradlew.bat assembleDebug` on Windows. Output: app/build/outputs/apk/debug/app-debug.apk. Android 7 or later. Same private Wi-Fi as TV; enter TV IP and accept pairing. Wake requires TV MAC and compatible standby settings. Local TV TLS certificates are not verified; use only trusted home Wi-Fi. No cloud server. This source has not been compiled or tested against a physical TV.
