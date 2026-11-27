@@ -1,0 +1,3 @@
+const $=id=>document.getElementById(id);for(const n of [1,2,3,4,5,6,7,8,9,0]){const b=document.createElement('button');b.textContent=n;b.dataset.key=n;$('numbers').append(b);}for(const k of ['ip','mac'])$(k).value=localStorage.getItem(k)||'';
+function act(fn){try{$('feedback').textContent='Sending…';fn();}catch(e){$('feedback').textContent=e.message;}}
+$('connect').onclick=()=>act(()=>{localStorage.setItem('ip',$('ip').value.trim());NativeRemote.connect($('ip').value.trim());});$('wake').onclick=()=>act(()=>{localStorage.setItem('mac',$('mac').value.trim());NativeRemote.wake($('mac').value.trim());});document.addEventListener('click',e=>{const b=e.target.closest('[data-key]');if(b)act(()=>NativeRemote.command(b.dataset.key));});
